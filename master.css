@@ -1,0 +1,181 @@
+*{
+   box-sizing: border-box;
+   margin: 0;
+}
+
+body, html{
+   width: 100%;
+   height: 100%;
+   font-family: Helvetica;
+}
+
+.container {
+   height: 100%;
+   display: flex;
+   background-color: #FFF;
+   opacity: 0.5;
+}
+
+.login-page{
+   width: 50%;
+   height: 100%;
+   flex: 1;
+   color: #1877F2;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   align-content: center;
+   font-size: 84px;
+   font-weight: bold;
+   flex-wrap: wrap;
+}
+
+.login-page p{
+   flex-basis: 368.78px;
+   align-self: flex-start;
+   color: black;
+   font-size: initial;
+   padding-top: 10px;
+   padding-left: 10px;
+   line-height: 1.7;
+}
+
+.login-container {
+   width: 50%;
+   height: 100%;
+   flex: -1;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   align-content: center;
+}
+
+.login-container .login{
+   width: 85%;
+   padding: 20px 10px;
+   background-color: white;
+   border-radius: 6px;
+   box-shadow: 0px 2px 4px rgba(0, 0, 0, .1), 0 8px 16px rgba(0, 0, 0, .1);
+}
+
+.login-container .login .email,
+.login-container .login .password{
+   width: 100%;
+   margin-top: 20px;
+   border: 1px solid #dddfe2;
+   border-radius: 6px;
+   padding: 15px 20px;
+   outline: none;
+   font-size: 17px;
+}
+
+.login-container .login .password{
+   margin-top: 0;
+}
+
+.login-container .login .password:focus,
+.login-container .login .email:focus{
+   border-color: #1877f2;
+}
+
+.login-container .login .login-btn{
+   width: 100%;
+   padding: 10px;
+   color: white;
+   background-color: #1877F2;
+   border: 1px solid #dddfe2;
+   border-radius: 6px;
+   outline: none;
+   font-size: 20px;
+   cursor: pointer;
+}
+
+.login-container .login .forgot-password{
+   text-decoration: none;
+   display: inline-block;
+   color: #1877F2;
+   border-color: transparent;
+   background-color: transparent;
+   outline: none;
+   font-size: 15px;
+   position: relative;
+   left: 50%;
+   transform: translate(-50%, 0);
+   cursor: pointer;
+}
+
+.login-container .login .signup-btn {
+   width: 50%;
+   padding: 10px;
+   margin-top: 10px;
+   color: white;
+   background-color: #00c542;
+   border: 1px solid #dddfe2;
+   border-radius: 6px;
+   outline: none;
+   font-size: 18px;
+   position: relative;
+   left: 50%;
+   transform: translate(-50%, 0);
+   cursor: pointer;
+}
+
+/* ----signup-popup---- */
+
+.signup-popup{
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+   width: 500px;
+   padding: 20px 10px;
+   background-color: white;
+   border-radius: 6px;
+   box-shadow: 0px 2px 4px rgba(0, 0, 0, .1), 0 8px 16px rgba(0, 0, 0, .1);
+}
+
+.signup-popup .header{
+   display: flex;
+}
+
+.signup-popup .sign{
+   flex: 1;
+   font-weight: bold;
+   font-size: 30px;
+   margin-bottom: 10px;
+}
+
+.signup-popup .bx-x {
+   font-weight: bold;
+   font-size: 25px;
+   cursor: pointer;
+}
+
+.signup-popup form{
+   padding: 10px;
+   border-top: 1px solid #dddfe2;
+   display: flex;
+   gap: 5px;
+   justify-content: space-between;
+   align-items: center;
+   flex-wrap: wrap;
+}
+
+.signup-popup .first-name,
+.signup-popup .last-name,
+.signup-popup .email,
+.signup-popup .password{
+   width: calc(50% - 5px);
+   margin-top: 20px;
+   border: 2px solid #dddfe2;
+   border-radius: 6px;
+   padding: 10px 20px;
+   outline: none;
+   font-size: 17px;
+}
+
+.signup-popup .email,
+.signup-popup .password{
+   width: 100%;
+   margin-top: 10px;
+}
