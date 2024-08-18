@@ -3,6 +3,8 @@
    <head>
       <meta charset="UTF-8">
       <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+      <link rel="stylesheet" href="/icons/all.min.css">
+      <link rel="stylesheet" href="/icons/fontawesome.min.css">
       <title>Facebook_Lite</title>
       <link rel="stylesheet" href="master.css">
    </head>
@@ -19,8 +21,11 @@
                <form action="#">
                   <input class="email" type ="text" placeholder ="Email address or phone number" required>
                   <br><br>
-                  <input class="password" type="password" placeholder="Password" required>
-                  <br><br>
+                  <div class="pass-icon">
+                     <input class="password" type="password" placeholder="Password" required>
+                     <i class="fa-solid fa-eye-slash"></i>
+                  </div>
+                  <br>
                   <button class="login-btn">Log in</button>
                   <br><br>
                   <a href="#" class ="forgot-password">Forgot password?</a>
@@ -38,10 +43,95 @@
          </div>
 
          <form action="#">
-            <input class="first-name" type="text" placeholder="First name" required>
-            <input class="last-name" type="text" placeholder="Last name" required>
-            <input class="email" type="email" placeholder="Email address or phone number" required>
-            <input class="password" type="password" placeholder="Password" required>
+            <input name="first-name" class="first-name" type="text" placeholder="First name" required>
+            <input name="last-name" class="last-name" type="text" placeholder="Last name" required>
+            <input name="email" class="email" type="email" placeholder="Email address or phone number" required>
+            <input name="password" class="password" type="password" placeholder="Password" required>
+            
+            <select name="day-of-birth" id="day">
+               <option value="1">1</option>
+               <option value="2">2</option>
+               <option value="3">3</option>
+               <option value="4">4</option>
+               <option value="5">5</option>
+               <option value="6">6</option>
+               <option value="7">7</option>
+               <option value="8">8</option>
+               <option value="9">9</option>
+               <option value="10">10</option>
+               <option value="11">11</option>
+               <option value="12">12</option>
+               <option value="13">13</option>
+               <option value="14">14</option>
+               <option value="15">15</option>
+               <option value="16">16</option>
+               <option value="17">17</option>
+               <option value="18">18</option>
+               <option value="19">19</option>
+               <option value="20">20</option>
+               <option value="21">21</option>
+               <option value="22">22</option>
+               <option value="23">23</option>
+               <option value="24">24</option>
+               <option value="25">25</option>
+               <option value="26">26</option>
+               <option value="27">27</option>
+               <option value="28">28</option>
+               <option value="29">29</option>
+               <option value="30">30</option>
+               <option value="31">31</option>
+            </select>
+            
+            <select name="month-of-birth" id="month">
+               <option value="Jan">Jan</option>
+               <option value="Feb">Feb</option>
+               <option value="Mar">Mar</option>
+               <option value="Abril">Abril</option>
+               <option value="May">May</option>
+               <option value="June">June</option>
+               <option value="Juliy">Juliy</option>
+               <option value="Aug">Aug</option>
+               <option value="Sep">Sep</option>
+               <option value="Oct">Oct</option>
+               <option value="Nov">Nov</option>
+               <option value="Dec">Dec</option>
+            </select>
+            
+            <select name="year-of-birth" id="year">
+               <option value="2000">2000</option>
+               <option value="2001">2001</option>
+               <option value="2002">2002</option>
+               <option value="2003">2003</option>
+               <option value="2004">2004</option>
+               <option value="2005">2005</option>
+               <option value="2006">2006</option>
+               <option value="2007">2007</option>
+               <option value="2008">2008</option>
+               <option value="2009">2009</option>
+               <option value="2010">2010</option>
+            </select>
+            
+            <div class="gender">
+               <span class="male">
+                  <input type="radio" id="male">
+                  <label for="male">Male</label>
+               </span>
+               <span class="female">
+                  <input type="radio" id="female">
+                  <label for="female">Female</label>
+               </span>
+            </div>
+
+            <div class="term-policy">
+               <p>people who use our service may have uploaded your contact
+                  information to facebook. Learn more.<br><br>
+
+                  by clicking sign up, you agree to our terms, privacy policy
+                  and cookies policy. You may recieve SMS notification for
+                  us and can opt oput at any time.</p>
+            </div>
+
+            <button class="signup">Sign Up</button>
          </form>
       </div>
 
