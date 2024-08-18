@@ -13,13 +13,17 @@ body, html{
    position: relative;
 }
 
-.pass-icon .fa-solid.fa-eye-slash{
+.pass-icon #eye-icon{
+   width: 20px;
    position: absolute;
-   color: black;
    right: 7px;
    top: 50%;
    transform: translate(0, -50%);
    cursor: pointer;
+}
+
+.pass-icon .fa-eye{
+   display: none
 }
 
 .container {
