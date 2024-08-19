@@ -85,6 +85,14 @@ body, html{
    font-size: 17px;
 }
 
+.login-container .login .error{
+   color: #ff3860;
+   font-size: 12px;
+   height: 13px;
+   margin-left: 11px;
+   padding: 5px;
+}
+
 .login-container .login .password{
    margin-top: 0;
 }
@@ -104,6 +112,7 @@ body, html{
    outline: none;
    font-size: 20px;
    cursor: pointer;
+   position: relative;
 }
 
 .login-container .login .forgot-password{
@@ -145,12 +154,12 @@ body, html{
    transform: translate(-50%, -50%);
    width: 500px;
    padding: 10px 10px;
-   background-color: #ffff9f;
+   background-color: white;
    border-radius: 6px;
    box-shadow: 0px 2px 4px rgba(0, 0, 0, .1), 0 8px 16px rgba(0, 0, 0, .1);
    opacity: 0;
    pointer-events: none;
-   transition: all 0.5s ease-out;
+   transition: all 0.3s ease-out;
 }
 
 .signup-popup .header{
@@ -168,23 +177,33 @@ body, html{
    font-weight: bold;
    font-size: 25px;
    cursor: pointer;
+   height: 12px;
 }
 
 .signup-popup form{
    padding: 10px;
    border-top: 1px solid #dddfe2;
    display: flex;
-   gap: 5px;
    justify-content: space-between;
    align-items: center;
    flex-wrap: wrap;
 }
 
-.signup-popup .first-name,
-.signup-popup .last-name,
-.signup-popup .email,
-.signup-popup .password{
+.signup-popup .fname,
+.signup-popup .lname {
    width: calc(50% - 5px);
+}
+
+.signup-popup .nemail,
+.signup-popup .npass{
+   width: 100%;
+}
+
+.signup-popup .fname .first-name,
+.signup-popup .lname .last-name,
+.signup-popup .nemail .new-email,
+.signup-popup .npass .new-password{
+   width: 100%;
    margin-top: 20px;
    border: 2px solid #dddfe2;
    border-radius: 6px;
@@ -193,17 +212,24 @@ body, html{
    font-size: 17px;
 }
 
-.signup-popup .email,
-.signup-popup .password{
-   width: 100%;
+.signup-popup .nemail .new-email,
+.signup-popup .npass .new-password{
    margin-top: 10px;
+}
+
+.signup-popup .error {
+   color: #ff3860;
+   font-size: 12px;
+   height: 13px;
+   margin-left: 11px;
+   padding: 5px;
 }
 
 .signup-popup #day,
 .signup-popup #month,
 .signup-popup #year{
    width: calc(33% - 5px);
-   margin-top: 20px;
+   margin-top: 10px;
    border: 2px solid #dddfe2;
    border-radius: 6px;
    padding: 10px 20px;
