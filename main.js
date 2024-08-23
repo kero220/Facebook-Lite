@@ -31,27 +31,22 @@ form.addEventListener("submit", (ev) => {
    ev.preventDefault();
 
    // Check Email And Password Info
+   const errorDiv = document.querySelectorAll(".error");
+
    if (contactInfo["Email"].includes(email.value) && contactInfo["Passowrd"].includes(password.value)) {
       console.log("Logged In Successfully");
+      errorDiv[0].textContent = '';
+      errorDiv[1].textContent = '';
    }
 
    else {
       // // Check If The Email Or Password Is Empty Or Wrong
-      const errorDiv = document.querySelectorAll(".error");
-
-      // Email Or Password Are Wrong
       if (!contactInfo["Email"].includes(email.value) || email.value.trim().length === 0){
          errorDiv[0].textContent = "Email is wrong"
-      }
-      else {
-         errorDiv[0].textContent = '';
       }
 
       if (!contactInfo["Passowrd"].includes(password.value) || password.value.trim().length === 0){
          errorDiv[1].textContent = "Password is wrong"
-      }
-      else {
-         errorDiv[1].textContent = '';
       }
    }
 });
@@ -106,10 +101,12 @@ const newPass = document.querySelector(".new-password");
 const day = document.querySelector("#day");
 const month = document.querySelector("#month");
 const year = document.querySelector("#year");
-let firstNameFlag = false, lastNameFlag = false, emailFlag = false, passFlag = false;
 
 signBTN.addEventListener("click", (ev) => {
    ev.preventDefault()
+
+   // Make Flags To Submit The Correct Data
+   let firstNameFlag = false, lastNameFlag = false, emailFlag = false, passFlag = false;
 
    // Make Name Validation
    let errorSign = document.querySelectorAll(".signup-popup .error")
@@ -131,12 +128,12 @@ signBTN.addEventListener("click", (ev) => {
          break;
       }
    }
+   fnameValueObject.join('');
 
    if (fName.value.trim().length === 0) {
       errorSign[0].textContent = "Your name must contains only letters";
       firstNameFlag = false;
    }
-
 
    // Last Name Validation
    for (let i = 0; i < lName.value.trim().length; i++){
@@ -153,6 +150,7 @@ signBTN.addEventListener("click", (ev) => {
          break;
       }
    }
+   lnameValueObject.join('');
 
    if (lName.value.trim().length === 0) {
       errorSign[1].textContent = "Your name must contains only letters"
@@ -184,11 +182,43 @@ signBTN.addEventListener("click", (ev) => {
    }
 
 // =========================================
+   // Get The Date Of Birth
+   let dayValue = day.options[day.selectedIndex].value
+   let monthValue = month.options[month.selectedIndex].value
+   let yearValue = year.options[year.selectedIndex].value
+
+   contactInfo["DayOfBirth"].push(dayValue);
+   contactInfo["MonthOfBirth"].push(monthValue);
+   contactInfo["YearOfBirth"].push(yearValue);
+
+   // Upload The Correct Data
+
+   function readyToSignUP() {
+      if (firstNameFlag && lastNameFlag && emailFlag && passFlag) {
+         contactInfo["FirstName"].push(fnameValueObject.join(''));
+         contactInfo["LastName"].push(lnameValueObject.join(''));
+         contactInfo["Email"].push(newEmail.value);
+         contactInfo["Passowrd"].push(newPass.value);
+         removeRepeatedValues();
+
+         signPopUp.style.cssText =
+            "opacity: 0; \
+            pointer-events: none;";
+         loginContainer.style.pointerEvents = "visible";
+
+         document.querySelector("#submit-signup").submit();
+      }
+   }
+   readyToSignUP();
+});
+
+// =========================================
 // Password Suggetion
 const SuggestBtn = document.querySelector(".suggest");
 
 SuggestBtn.onclick = function (ev) {
-   ev.preventDefault()
+   ev.preventDefault();
+   
    const characters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!\"#$%&'()*+,-./";
    let passwordSuggestion = "";
    
@@ -217,17 +247,6 @@ eye.onclick = function () {
 }
 
 // =========================================
-   // Get The Date Of Birth
-   let dayValue = day.options[day.selectedIndex].value
-   let monthValue = month.options[month.selectedIndex].value
-   let yearValue = year.options[year.selectedIndex].value
-
-   contactInfo["DayOfBirth"].push(dayValue);
-   contactInfo["MonthOfBirth"].push(monthValue);
-   contactInfo["YearOfBirth"].push(yearValue);
-});
-
-// =========================================
 // Get The Gender
 const maleGender = document.querySelector("#male");
 const femaleGender = document.querySelector("#female");
@@ -241,15 +260,9 @@ femaleGender.onclick = function () {
 }
 
 // =========================================
-// Upload Data Into Database And Create The New Account
+console.log(contactInfo["Email"])
+console.log(contactInfo["Passowrd"])
+console.log(contactInfo["FirstName"])
+console.log(contactInfo["LastName"])
 
-function readyToSignUP() {
-   if (firstNameFlag && lastNameFlag && emailFlag && passFlag) {
-      contactInfo["FirstName"].push(fnameValueObject);
-      contactInfo["LastName"].push(lnameValueObject);
-      contactInfo["Email"].push(newEmail.value);
-      contactInfo["Passowrd"].push(newPass.value);
-      removeRepeatedValues();
-   }
-}
-readyToSignUP();
+// Use localstorage to avoid window refresh
