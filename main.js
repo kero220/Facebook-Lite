@@ -80,16 +80,6 @@ eyeIcon.onclick = function () {
 
 const create = document.querySelector(".signup-btn");
 const loginContainer = document.querySelector(".login")
-const fName = document.querySelector(".first-name");
-const lName = document.querySelector(".last-name");
-const newEmail = document.querySelector(".new-email");
-const newPass = document.querySelector(".new-password");
-const day = document.querySelector("#day");
-const month = document.querySelector("#month");
-const year = document.querySelector("#year");
-const maleGender = document.querySelector("#male");
-const femaleGender = document.querySelector("#female");
-const signBTN = document.querySelector(".signup");
 
 // Create A New Account
 create.addEventListener("click", _ => {
@@ -117,6 +107,15 @@ create.addEventListener("click", _ => {
 
 
 // Signup A New Account
+const fName = document.querySelector(".first-name");
+const lName = document.querySelector(".last-name");
+const newEmail = document.querySelector(".new-email");
+const signBTN = document.querySelector(".signup");
+const newPass = document.querySelector(".new-password");
+const day = document.querySelector("#day");
+const month = document.querySelector("#month");
+const year = document.querySelector("#year");
+
 signBTN.addEventListener("click", (ev) => {
    ev.preventDefault()
 
@@ -143,8 +142,7 @@ signBTN.addEventListener("click", (ev) => {
       errorSign[0].textContent = "Your name must contains only letters"
    
    // Push First Name To The Object
-   // contactInfo["first-name"].push(fnameValueObject);
-   // console.log(contactInfo["first-name"]);
+   contactInfo["FirstName"].push(fnameValueObject);
    
    // Last Name Validation
    for (let i = 0; i < lName.value.trim().length; i++){
@@ -164,8 +162,7 @@ signBTN.addEventListener("click", (ev) => {
       errorSign[0].textContent = "Your name must contains only letters"
    
    // Push Last Name To The Object
-   // contactInfo["last-name"].push(lnameValueObject);
-   // console.log(contactInfo["last-name"]);
+   contactInfo["LastName"].push(lnameValueObject);
 
 
    // Make Email Validation
@@ -203,17 +200,6 @@ signBTN.addEventListener("click", (ev) => {
 });
 
 
-// Get The Gender
-maleGender.onclick = function () {
-   contactInfo["Gender"].push(maleGender.value)
-   console.log(contactInfo["Gender"])
-}
-
-femaleGender.onclick = function () {
-   contactInfo["Gender"].push(femaleGender.value)
-}
-
-
 // Password Suggetion
 const SuggestBtn = document.querySelector(".suggest");
 
@@ -232,6 +218,7 @@ SuggestBtn.onclick = function (ev) {
    newPass.value = passwordSuggestion;
 }
 
+
 // Show Password Words
 const eye = document.querySelector(".npass #eye-icon");
 eye.onclick = function () {
@@ -243,6 +230,19 @@ eye.onclick = function () {
       newPass.type = "password";
       eye.src = "/img/eye-slash.svg";
    }
+}
+
+
+// Get The Gender
+const maleGender = document.querySelector("#male");
+const femaleGender = document.querySelector("#female");
+
+maleGender.onclick = function () {
+   contactInfo["Gender"].push(maleGender.value);
+}
+
+femaleGender.onclick = function () {
+   contactInfo["Gender"].push(femaleGender.value);
 }
 
 
