@@ -52,16 +52,18 @@
                <div class="error"></div>
             </div>
             <div class="nemail">
-               <input name="email" class="new-email" type="email" placeholder="Email address or phone number">
+               <input name="email" class="new-email" type="email" placeholder="New email address or phone number">
                <div class="error"></div>
             </div>
             <div class="npass">
-               <input name="password" class="new-password" type="password" placeholder="Password">
+               <img src="/img/eye-slash.svg" alt="Photo Not Found" id="eye-icon">
+               <input name="password" class="new-password" type="password" placeholder="New password">
+               <button class="suggest">Suggest password</button>
                <div class="error"></div>
             </div>
-            
+
             <select name="day-of-birth" id="day">
-               <option value="1">1</option>
+               <option value="1" selected>1</option>
                <option value="2">2</option>
                <option value="3">3</option>
                <option value="4">4</option>
@@ -95,7 +97,7 @@
             </select>
             
             <select name="month-of-birth" id="month">
-               <option value="Jan">Jan</option>
+               <option value="Jan" selected>Jan</option>
                <option value="Feb">Feb</option>
                <option value="Mar">Mar</option>
                <option value="Abril">Abril</option>
@@ -110,7 +112,7 @@
             </select>
             
             <select name="year-of-birth" id="year">
-               <option value="2000">2000</option>
+               <option value="2000" selected>2000</option>
                <option value="2001">2001</option>
                <option value="2002">2002</option>
                <option value="2003">2003</option>
@@ -125,11 +127,11 @@
             
             <div class="gender">
                <span class="male">
-                  <input type="radio" id="male">
+                  <input type="radio" id="male" value="male" name="gender">
                   <label for="male">Male</label>
                </span>
                <span class="female">
-                  <input type="radio" id="female">
+                  <input type="radio" id="female" value="female" name="gender">
                   <label for="female">Female</label>
                </span>
             </div>

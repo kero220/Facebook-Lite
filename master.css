@@ -196,6 +196,7 @@ body, html{
 .signup-popup .nemail,
 .signup-popup .npass{
    width: 100%;
+   position: relative;
 }
 
 .signup-popup .fname .first-name,
@@ -214,6 +215,36 @@ body, html{
 .signup-popup .nemail .new-email,
 .signup-popup .npass .new-password{
    margin-top: 10px;
+}
+
+.signup-popup .npass .suggest{
+   margin-top: 5px;
+   margin-left: 13px;
+   padding: 5px;
+   color: white;
+   background-color: #36a420;
+   border: 1px solid #dddfe2;
+   border-radius: 4px;
+   outline: none;
+   font-size: 13px;
+   cursor: pointer;
+}
+
+.signup-popup .npass #eye-icon{
+   width: 20px;
+   position: absolute;
+   right: 7px;
+   top: 50%;
+   transform: translate(0, -50%);
+   margin-top: -10px;
+   cursor: pointer;
+}
+
+.signup-popup .npass .error {
+   position: absolute;
+   top: 50%;
+   left: 30%;
+   margin-top: 15px;
 }
 
 .signup-popup .error {
