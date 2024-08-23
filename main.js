@@ -24,7 +24,6 @@ function removeRepeatedValues() {
 
 // Check If The Email In Object After Submit
 const email = document.querySelector(".email");
-const login = document.querySelector(".login-btn");
 const password = document.querySelector(".password");
 const form = document.querySelector("form");
 
@@ -37,28 +36,22 @@ form.addEventListener("submit", (ev) => {
    }
 
    else {
-      // Check If The Email Or Password Is Empty Or Not
+      // // Check If The Email Or Password Is Empty Or Wrong
       const errorDiv = document.querySelectorAll(".error");
-      
-      if (email.value.trim() === '') {;
-         errorDiv[0].textContent = "Email is required";
-      }
-
-      if (email.value) {;
-         errorDiv[0].textContent = "";
-      }
-
-      if (password.value.trim() === '') {
-         errorDiv[1].textContent = "Password is required";
-      }
-
-      if (password.value) {
-         errorDiv[1].textContent = "";
-      }
 
       // Email Or Password Are Wrong
-      if (!(contactInfo["Email"].includes(email.value) && contactInfo["Passowrd"].includes(password.value))) {
-         console.log("Email or password is wrong");
+      if (!contactInfo["Email"].includes(email.value) || email.value.trim().length === 0){
+         errorDiv[0].textContent = "Email is wrong"
+      }
+      else {
+         errorDiv[0].textContent = '';
+      }
+
+      if (!contactInfo["Passowrd"].includes(password.value) || password.value.trim().length === 0){
+         errorDiv[1].textContent = "Password is wrong"
+      }
+      else {
+         errorDiv[1].textContent = '';
       }
    }
 });
@@ -77,9 +70,9 @@ eyeIcon.onclick = function () {
 }
 
 /******************************************************/
-
 const create = document.querySelector(".signup-btn");
 const loginContainer = document.querySelector(".login")
+const signPopUp = document.querySelector(".signup-popup");
 
 // Create A New Account
 create.addEventListener("click", _ => {
@@ -87,22 +80,20 @@ create.addEventListener("click", _ => {
    loginContainer.style.pointerEvents = "none";
    
    // Show The Signup Container
-   const signPopUp = document.querySelector(".signup-popup");
-   
    signPopUp.style.cssText =
       "opacity: 1; \
       pointer-events: visible;";
+});
+
+// Enable The Exit Button
+const exit = document.querySelector(".bx");
+exit.onclick = ("click", _=>{
+   signPopUp.style.cssText =
+      "opacity: 0; \
+      pointer-events: none;";
    
-   // Enable The Exit Button
-   let exit = document.querySelector(".bx");
-   exit.onclick = () => {
-      signPopUp.style.cssText =
-         "opacity: 0; \
-         pointer-events: none;";
-      
-      // Enable The Login Container
-      loginContainer.style.pointerEvents = "visible";
-   }
+   // Enable The Login Container
+   loginContainer.style.pointerEvents = "visible";
 });
 
 
@@ -115,6 +106,7 @@ const newPass = document.querySelector(".new-password");
 const day = document.querySelector("#day");
 const month = document.querySelector("#month");
 const year = document.querySelector("#year");
+let firstNameFlag = false, lastNameFlag = false, emailFlag = false, passFlag = false;
 
 signBTN.addEventListener("click", (ev) => {
    ev.preventDefault()
@@ -129,77 +121,69 @@ signBTN.addEventListener("click", (ev) => {
       if (isNaN(Number(fName.value[i]))) {
          errorSign[0].textContent = ''
          fnameValueObject.push(fName.value[i]);
+         firstNameFlag = true;
          continue;
       }
       else {
          errorSign[0].textContent = "Your name must contains only letters"
          fnameValueObject.forEach(_ => fnameValueObject.pop());
+         firstNameFlag = false;
          break;
       }
    }
 
-   if (fName.value.trim().length === 0)
-      errorSign[0].textContent = "Your name must contains only letters"
-   
-   // Push First Name To The Object
-   contactInfo["FirstName"].push(fnameValueObject);
-   
+   if (fName.value.trim().length === 0) {
+      errorSign[0].textContent = "Your name must contains only letters";
+      firstNameFlag = false;
+   }
+
+
    // Last Name Validation
    for (let i = 0; i < lName.value.trim().length; i++){
       if (isNaN(Number(lName.value[i]))) {
          errorSign[1].textContent = ''
          lnameValueObject.push(lName.value[i]);
+         lastNameFlag = true;
          continue;
       }
       else {
          errorSign[1].textContent = "Your name must contains only letters"
          lnameValueObject.forEach(_ => lnameValueObject.pop());
+         lastNameFlag = false;
          break;
       }
    }
 
-   if (lName.value.trim().length === 0)
-      errorSign[0].textContent = "Your name must contains only letters"
-   
-   // Push Last Name To The Object
-   contactInfo["LastName"].push(lnameValueObject);
+   if (lName.value.trim().length === 0) {
+      errorSign[1].textContent = "Your name must contains only letters"
+      lastNameFlag = false;
+   }
 
-
+// =========================================
    // Make Email Validation
    let emailReg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
    
    if (emailReg.test(newEmail.value.trim())){
-      // Add The New Email To The Object
-      contactInfo["Email"].push(newEmail.value);
-      removeRepeatedValues();
       errorSign[2].textContent = '';
+      emailFlag = true;
    }
    else {
       errorSign[2].textContent = "Email is not valid";
+      emailFlag = false;
    }
 
-
+// =========================================
    // Make New Password Minimum Length
    if (newPass.value.length < 5) {
-      errorSign[3].textContent = "Password mustn't be less than 5 letters";
+      errorSign[3].textContent = "Password must be more than 5 letters";
+      passFlag = false;
    }
    else {
       errorSign[3].textContent = '';
-      contactInfo["Passowrd"].push(newPass.value);
+      passFlag = true;
    }
 
-
-   // Get The Date Of Birth
-   let dayValue = day.options[day.selectedIndex].value
-   let monthValue = month.options[month.selectedIndex].value
-   let yearValue = year.options[year.selectedIndex].value
-
-   contactInfo["DayOfBirth"].push(dayValue);
-   contactInfo["MonthOfBirth"].push(monthValue);
-   contactInfo["YearOfBirth"].push(yearValue);
-});
-
-
+// =========================================
 // Password Suggetion
 const SuggestBtn = document.querySelector(".suggest");
 
@@ -232,7 +216,18 @@ eye.onclick = function () {
    }
 }
 
+// =========================================
+   // Get The Date Of Birth
+   let dayValue = day.options[day.selectedIndex].value
+   let monthValue = month.options[month.selectedIndex].value
+   let yearValue = year.options[year.selectedIndex].value
 
+   contactInfo["DayOfBirth"].push(dayValue);
+   contactInfo["MonthOfBirth"].push(monthValue);
+   contactInfo["YearOfBirth"].push(yearValue);
+});
+
+// =========================================
 // Get The Gender
 const maleGender = document.querySelector("#male");
 const femaleGender = document.querySelector("#female");
@@ -245,5 +240,16 @@ femaleGender.onclick = function () {
    contactInfo["Gender"].push(femaleGender.value);
 }
 
+// =========================================
+// Upload Data Into Database And Create The New Account
 
-// check that all parameters true to sign up
+function readyToSignUP() {
+   if (firstNameFlag && lastNameFlag && emailFlag && passFlag) {
+      contactInfo["FirstName"].push(fnameValueObject);
+      contactInfo["LastName"].push(lnameValueObject);
+      contactInfo["Email"].push(newEmail.value);
+      contactInfo["Passowrd"].push(newPass.value);
+      removeRepeatedValues();
+   }
+}
+readyToSignUP();
