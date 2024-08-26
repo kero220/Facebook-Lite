@@ -195,18 +195,16 @@ signBTN.addEventListener("click", (ev) => {
 
    function readyToSignUP() {
       if (firstNameFlag && lastNameFlag && emailFlag && passFlag) {
-         contactInfo["FirstName"].push(fnameValueObject.join(''));
-         contactInfo["LastName"].push(lnameValueObject.join(''));
-         contactInfo["Email"].push(newEmail.value);
-         contactInfo["Passowrd"].push(newPass.value);
+         contactInfo["FirstName"].push(localStorage["LastName"]);
+         contactInfo["LastName"].push(localStorage["FirstName"]);
+         contactInfo["Email"].push(localStorage["Email"]);
+         contactInfo["Passowrd"].push(localStorage["Password"]);
          removeRepeatedValues();
 
          signPopUp.style.cssText =
             "opacity: 0; \
             pointer-events: none;";
          loginContainer.style.pointerEvents = "visible";
-
-         document.querySelector("#submit-signup").submit();
       }
    }
    readyToSignUP();
@@ -260,9 +258,7 @@ femaleGender.onclick = function () {
 }
 
 // =========================================
-console.log(contactInfo["Email"])
-console.log(contactInfo["Passowrd"])
-console.log(contactInfo["FirstName"])
-console.log(contactInfo["LastName"])
-
-// Use localstorage to avoid window refresh
+console.log(contactInfo["Email"]);
+console.log(contactInfo["Passowrd"]);
+console.log(contactInfo["FirstName"]);
+console.log(contactInfo["LastName"]);
