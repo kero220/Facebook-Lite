@@ -42,11 +42,13 @@ form.addEventListener("submit", (ev) => {
    else {
       // // Check If The Email Or Password Is Empty Or Wrong
       if (!contactInfo["Email"].includes(email.value) || email.value.trim().length === 0){
-         errorDiv[0].textContent = "Email is wrong"
+         errorDiv[0].textContent = "Email is wrong";
+         email.value = '';
       }
-
+      
       if (!contactInfo["Passowrd"].includes(password.value) || password.value.trim().length === 0){
          errorDiv[1].textContent = "Password is wrong"
+         password.value = '';
       }
    }
 });
